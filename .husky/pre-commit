@@ -9,4 +9,4 @@ then
 fi
 
 yarn lint:fix
-echo "🐛냠냠냠"
+echo "🐛 냠냠냠"
