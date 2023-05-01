@@ -10,3 +10,5 @@ fi
 
 yarn lint:fix
 echo "🐛 냠냠냠"
+
+git add .
