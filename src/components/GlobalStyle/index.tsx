@@ -1,5 +1,7 @@
 import { Global, css } from '@emotion/react';
 
+import { theme } from '../../theme';
+
 export function GlobalStyle() {
   return (
     <>
@@ -22,7 +24,7 @@ const globalCss = css`
     word-break: keep-all;
     overflow-wrap: break-word;
 
-    background-color: #242424;
+    background-color: ${theme.colors.gray120};
   }
 
   button {

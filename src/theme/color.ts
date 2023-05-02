@@ -1,5 +1,4 @@
 export const colors = {
-  // darkmode
   primary: '#FF862F',
   primary_press: '#E96C12',
   primary_opacity: '#744320',
