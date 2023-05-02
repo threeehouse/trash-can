@@ -1,12 +1,17 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
 import { theme } from '../../theme';
 import { Button } from '../Button';
 
 export function Navigation() {
+  const router = useRouter();
+  const handleRouter = (event, path) => router.replace(path, window.location.href);
   return (
     <StyledNav>
-      <Button type="primary">HOME</Button>
+      <Button type="primary" onClick={handleRouter('/home')}>
+        HOME
+      </Button>
       <Button type="ghost">RANK</Button>
     </StyledNav>
   );
