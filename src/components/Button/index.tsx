@@ -111,17 +111,11 @@ const StyledButton = styled('button')<{
       background: ${BUTTON_COLOR[disabled ? 'disabled' : 'normal'][buttontype]};
       width: ${width ? `${width}px` : '100%'};
       height: ${BUTTON_HEIGHT[size]};
-      border: ${buttontype !== 'ghost' ? 'none' : '1px solid #A5A5A5'};
+      border: 'none';
       color: ${BUTTOON_TEXT_COLOR[buttontype]};
     `;
   }}
   &:hover {
     background: ${({ buttontype }) => BUTTON_COLOR.hover[buttontype]} !important;
-  }
-
-  &:focus {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
   }
 `;
