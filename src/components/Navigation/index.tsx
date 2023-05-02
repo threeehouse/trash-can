@@ -1,8 +1,10 @@
+import { Button } from '../Button';
+
 export function Navigation() {
   return (
     <div>
-      <button>Home</button>
-      <button>Rank</button>
+      <Button type="primary">Home</Button>
+      <Button type="ghost">Rank</Button>
     </div>
   );
 }

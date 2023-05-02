@@ -1,7 +1,7 @@
 export const colors = {
-  primary: '#89F66E',
-  primary_press: '#E96C12',
-  primary_opacity: '#744320',
+  primary: '#63e043',
+  primary_press: '#4cb830',
+  primary_opacity: '#71916a',
   danger: '#EB4852',
   danger_press: '#C63135',
   success: '#39D878',
