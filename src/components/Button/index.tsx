@@ -5,7 +5,7 @@ import { KeyOfColors, theme } from '../../theme';
 import { Text } from '../Text';
 import { Typography } from '../Text/token';
 
-type ButtonType = 'primary' | 'general' | 'ghost';
+export type ButtonType = 'primary' | 'general' | 'ghost';
 
 type ButtonSize = 'medium' | 'large';
 

@@ -1,18 +1,50 @@
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { theme } from '../../theme';
-import { Button } from '../Button';
+import { Button, ButtonType } from '../Button';
+
+type NavButton = {
+  homeType: ButtonType;
+  rankType: ButtonType;
+};
+
+const useNavigation = () => {
+  const [navButton, setNavButton] = useState<NavButton>({
+    homeType: 'primary',
+    rankType: 'ghost',
+  });
+
+  const setNav = (path: string) => {
+    switch (path) {
+      case '/home':
+        setNavButton({ homeType: 'primary', rankType: 'ghost' });
+        break;
+      case '/rank':
+        setNavButton({ homeType: 'ghost', rankType: 'primary' });
+        break;
+    }
+  };
+
+  return { navButton, setNav };
+};
 
 export function Navigation() {
   const router = useRouter();
-  const handleRouter = (event, path) => router.replace(path, window.location.href);
+  const { navButton, setNav } = useNavigation();
+  const clickRouter = (path: string) => {
+    setNav(path);
+    router.push(path);
+  };
   return (
     <StyledNav>
-      <Button type="primary" onClick={handleRouter('/home')}>
+      <Button type={navButton.homeType} onClick={() => clickRouter('/home')}>
         HOME
       </Button>
-      <Button type="ghost">RANK</Button>
+      <Button type={navButton.rankType} onClick={() => clickRouter('/rank')}>
+        RANK
+      </Button>
     </StyledNav>
   );
 }
