@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div style={{ position: 'relative' }}>
       <GlobalStyle />
-      <AnimatePresence mode="popLayout" initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         <Component {...pageProps} key={router.asPath} />
       </AnimatePresence>
       <Navigation />

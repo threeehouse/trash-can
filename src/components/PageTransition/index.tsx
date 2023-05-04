@@ -5,19 +5,19 @@ type PageTransitionProps = HTMLMotionProps<'div'>;
 
 export function PageTransition({ children, ...rest }: PageTransitionProps) {
   const onTheRight = {
-    x: '100%',
+    y: 50,
     opacity: 0,
   };
   const inTheCenter = {
-    x: 0,
+    y: 0,
     opacity: 1,
   };
   const onTheLeft = {
-    x: '-100%',
+    y: 50,
     opacity: 0,
   };
 
-  const transition = { duration: 0.6 };
+  const transition = { duration: 0.3 };
 
   return (
     <motion.div
