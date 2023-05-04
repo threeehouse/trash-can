@@ -7,10 +7,10 @@ import { GlobalStyle, Navigation } from '../components';
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <GlobalStyle />
       <AnimatePresence mode="popLayout" initial={false}>
-        <Component {...pageProps} key={router.route} />
+        <Component {...pageProps} key={router.asPath} />
       </AnimatePresence>
       <Navigation />
     </div>

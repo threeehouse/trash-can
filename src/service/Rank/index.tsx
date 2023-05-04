@@ -1,28 +1,8 @@
-import { motion } from 'framer-motion';
-
-import { Text } from '../../components';
-
-const pageVariant = {
-  // return 함수로 변경
-  entry: {
-    x: 100,
-    opacity: 0,
-  },
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: {
-    x: 100,
-    opacity: 0,
-  },
-};
-
-const transition = { duration: 0.3, ease: 'easeInOut' };
+import { PageTransition, Text } from '../../components';
 
 function Rank() {
   return (
-    <motion.div variants={pageVariant} initial="entry" animate="center" exit="exit" transition={transition}>
+    <PageTransition>
       <Text variant="title01" color="primary">
         랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹!
         랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹!
@@ -34,7 +14,7 @@ function Rank() {
         랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹!
         랭킹! 랭킹! 랭킹! 랭킹! 랭킹! 랭킹!
       </Text>
-    </motion.div>
+    </PageTransition>
   );
 }
 
