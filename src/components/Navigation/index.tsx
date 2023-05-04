@@ -62,7 +62,10 @@ export function Navigation() {
   const { navButton, setNav } = useNavigation();
   const clickRouter = (path: string) => {
     setNav(path);
-    router.push(path);
+    router.push(path, undefined, {
+      scroll: false,
+      // PageTransition컴포넌트에서 ForwardRef를 통해 받은 ref로도 scroll을 막을 수 있을지?
+    });
   };
   return (
     <StyledNav variants={navVariant} initial="start" animate="end">

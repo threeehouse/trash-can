@@ -14,16 +14,6 @@ type ButtonStatus = 'normal' | 'hover' | 'disabled';
 
 type ButtonHTMLType = 'button' | 'reset' | 'submit' | undefined;
 
-// interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-//   type?: ButtonType;
-//   width?: number;
-//   size?: ButtonSize;
-//   buttonStyle?: React.CSSProperties;
-//   disabled?: boolean;
-//   htmlType?: ButtonHTMLType;
-//   children: React.ReactNode;
-// }
-
 interface Props extends Omit<HTMLMotionProps<'button'>, 'type'> {
   type?: ButtonType;
   width?: number;

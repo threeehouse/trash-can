@@ -2,7 +2,6 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import React from 'react';
 
 type PageTransitionProps = HTMLMotionProps<'div'>;
-// type PageTransitionRef = React.ForwardedRef<HTMLDivElement>;
 
 export function PageTransition({ children, ...rest }: PageTransitionProps) {
   const onTheRight = {
