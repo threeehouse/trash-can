@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -42,6 +43,20 @@ const buttonVariant = {
   },
 };
 
+const navVariant = {
+  start: {
+    x: '-50%',
+    y: 200,
+  },
+  end: {
+    x: '-50%',
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
 export function Navigation() {
   const router = useRouter();
   const { navButton, setNav } = useNavigation();
@@ -50,7 +65,7 @@ export function Navigation() {
     router.push(path);
   };
   return (
-    <StyledNav>
+    <StyledNav variants={navVariant} initial="start" animate="end">
       <Button
         type={navButton.homeType}
         onClick={() => clickRouter('/home')}
@@ -73,7 +88,7 @@ export function Navigation() {
   );
 }
 
-const StyledNav = styled('nav')`
+const StyledNav = styled(motion.nav)`
   background-color: ${theme.colors.gray100};
   border-radius: 32px;
   padding: 6px;
@@ -81,7 +96,6 @@ const StyledNav = styled('nav')`
   position: fixed;
   bottom: 12px;
   left: 50%;
-  transform: translateX(-50%);
   display: flex;
   width: 400px;
 `;
