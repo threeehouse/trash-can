@@ -15,6 +15,8 @@
     "@babel/preset-typescript": "^7.21.4",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
+    "@fxts/core": "^0.14.0",
+    "framer-motion": "^10.12.7",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"

@@ -1,11 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { HTMLMotionProps, motion } from 'framer-motion';
 
 import { KeyOfColors, theme } from '../../theme';
 import { Text } from '../Text';
 import { Typography } from '../Text/token';
 
-type ButtonType = 'primary' | 'general' | 'ghost';
+export type ButtonType = 'primary' | 'general' | 'ghost';
 
 type ButtonSize = 'medium' | 'large';
 
@@ -13,7 +14,7 @@ type ButtonStatus = 'normal' | 'hover' | 'disabled';
 
 type ButtonHTMLType = 'button' | 'reset' | 'submit' | undefined;
 
-interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+interface Props extends Omit<HTMLMotionProps<'button'>, 'type'> {
   type?: ButtonType;
   width?: number;
   size?: ButtonSize;
@@ -47,13 +48,13 @@ const BUTTON_COLOR: ButtonColorMap = {
   },
 };
 
-const BUTTOON_TEXT_COLOR: { [key in ButtonType]: KeyOfColors } = {
+const BUTTON_TEXT_COLOR: { [key in ButtonType]: KeyOfColors } = {
   primary: 'white',
   general: 'gray110',
   ghost: 'white',
 };
 
-const BUTTOON_TEXT_SIZE: { [key in ButtonSize]: Typography } = {
+const BUTTON_TEXT_SIZE: { [key in ButtonSize]: Typography } = {
   large: 'subhead',
   medium: 'headline',
 };
@@ -85,14 +86,14 @@ export function Button({
       type={htmlType}
       {...rest}
     >
-      <Text color={BUTTOON_TEXT_COLOR[type]} variant={BUTTOON_TEXT_SIZE[size]}>
+      <Text color={BUTTON_TEXT_COLOR[type]} variant={BUTTON_TEXT_SIZE[size]}>
         {children}
       </Text>
     </StyledButton>
   );
 }
 
-const StyledButton = styled('button')<{
+const StyledButton = styled(motion.button)<{
   buttontype: ButtonType;
   disabled?: boolean;
   width?: number;
@@ -112,7 +113,7 @@ const StyledButton = styled('button')<{
       width: ${width ? `${width}px` : '100%'};
       height: ${BUTTON_HEIGHT[size]};
       border: 'none';
-      color: ${BUTTOON_TEXT_COLOR[buttontype]};
+      color: ${BUTTON_TEXT_COLOR[buttontype]};
     `;
   }}
   &:hover {
