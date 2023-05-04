@@ -30,6 +30,18 @@ const useNavigation = () => {
   return { navButton, setNav };
 };
 
+const buttonVariant = {
+  start: {
+    opacity: 0,
+  },
+  end: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+
 export function Navigation() {
   const router = useRouter();
   const { navButton, setNav } = useNavigation();
@@ -39,10 +51,22 @@ export function Navigation() {
   };
   return (
     <StyledNav>
-      <Button type={navButton.homeType} onClick={() => clickRouter('/home')}>
+      <Button
+        type={navButton.homeType}
+        onClick={() => clickRouter('/home')}
+        variants={buttonVariant}
+        initial="start"
+        animate="end"
+      >
         HOME
       </Button>
-      <Button type={navButton.rankType} onClick={() => clickRouter('/rank')}>
+      <Button
+        type={navButton.rankType}
+        onClick={() => clickRouter('/rank')}
+        variants={buttonVariant}
+        initial="start"
+        animate="end"
+      >
         RANK
       </Button>
     </StyledNav>
