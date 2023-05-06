@@ -39,7 +39,7 @@ function Home() {
       <StyledLayout>
         <ItemList>
           {[...mockItems, ...mockItems].map(({ imgUrl, like, hate, title }, index) => (
-            <Item key={index} index={index} imgUrl={imgUrl} like={like} hate={hate} title={title} />
+            <Item key={index} imgUrl={imgUrl} like={like} hate={hate} title={title} />
           ))}
         </ItemList>
       </StyledLayout>
