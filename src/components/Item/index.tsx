@@ -66,7 +66,6 @@ interface ItemProps extends Partial<HTMLMotionProps<'button'>> {
 }
 
 export function Item({ imgUrl, like, title }: ItemProps) {
-  console.log(like, title);
   const [hovered, setHovered] = useState(false);
   const handleMouseEnter = () => {
     setHovered(true);
