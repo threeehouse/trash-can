@@ -12,8 +12,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <AnimatePresence mode="wait" initial={false}>
         <Component {...pageProps} key={router.asPath} />
       </AnimatePresence>
-      <ThreeBackground />
       <Navigation />
+      <ThreeBackground />
     </div>
   );
 }

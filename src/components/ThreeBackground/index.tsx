@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useEffect, useRef } from 'react';
 
 import { FontLoader, THREE, TextGeometry, helvetikerFont } from '../../../public/static/three';
@@ -85,19 +84,20 @@ export function ThreeBackground() {
 
       requestAnimationFrame(render);
 
+      const onWindowResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+      window.addEventListener('resize', onWindowResize);
+
       return () => {
         container.removeChild(renderer.domElement);
+        geometry.dispose();
+        material.dispose();
       };
     }
   }, [font]);
 
-  return <StyledContainer ref={containerRef} />;
+  return <div ref={containerRef} />;
 }
-
-const StyledContainer = styled('div')`
-  display: block;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-`;
