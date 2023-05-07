@@ -12,6 +12,15 @@ const initRenderer = (container: HTMLDivElement) => {
   return renderer;
 };
 
+const getRandomPositions = () =>
+  [-1, -0.6, -0.2, 0.2, 0.6, 1].map(x => ({
+    x,
+    y: Math.random() - 0.5,
+    z: Math.random() - 0.5,
+    rx: Math.random() * 4,
+    ry: Math.random() * 4,
+  }));
+
 export function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
   const loader = new FontLoader();
@@ -21,8 +30,8 @@ export function ThreeBackground() {
     const container = containerRef.current;
     if (container !== null) {
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.set(1, 2, 1); // 나보다 앞에 있으면 양수, 뒤에있으면 음수, 카메라의 위치
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, 3); // 나보다 앞에 있으면 양수, 뒤에있으면 음수, 카메라의 위치
       camera.lookAt(new THREE.Vector3(0, 0, 0)); // 카메라가 0, 0, 0을 바라보게 함
       const renderer = initRenderer(container);
 
@@ -32,8 +41,8 @@ export function ThreeBackground() {
 
       const geometry = new TextGeometry('3', {
         font,
-        size: 0.6,
-        height: 0.1,
+        size: 0.36,
+        height: 0.06,
         curveSegments: 1,
         bevelEnabled: true,
         bevelThickness: 0.01,
@@ -48,13 +57,27 @@ export function ThreeBackground() {
         metalness: 0.7,
       });
 
-      const mesh = new THREE.Mesh(geometry, material);
-      scene.add(mesh);
+      const positions = getRandomPositions();
+
+      const meshes = positions.map(({ x, y, z, rx, ry }) => {
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = x;
+        mesh.position.y = y;
+        mesh.position.z = z;
+        mesh.rotation.x = rx;
+        mesh.rotation.y = ry;
+        return { mesh, y, z };
+      });
+
+      meshes.forEach(({ mesh }) => scene.add(mesh));
 
       const render = (time: number) => {
         time *= 0.0005;
-        mesh.rotation.x = time;
-        mesh.rotation.y = time;
+        meshes.forEach(({ mesh, y, z }) => {
+          mesh.position.y = Math.sin(time) * y * 1.6;
+          mesh.position.z = Math.cos(time * 1.2) * z * 2 + 1;
+          mesh.rotation.y = time;
+        });
 
         renderer.render(scene, camera);
         requestAnimationFrame(render);
