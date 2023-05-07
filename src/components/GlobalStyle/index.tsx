@@ -24,7 +24,7 @@ const globalCss = css`
     word-break: keep-all;
     overflow-wrap: break-word;
 
-    background-color: ${theme.colors.gray120};
+    /* background-color: ${theme.colors.gray120}; */
   }
 
   button {
