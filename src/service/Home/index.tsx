@@ -38,8 +38,8 @@ function Home() {
     <PageTransition>
       <StyledLayout>
         <ItemList>
-          {[...mockItems, ...mockItems].map(({ imgUrl, like, hate, title }, index) => (
-            <Item key={index} imgUrl={imgUrl} like={like} hate={hate} title={title} />
+          {[...mockItems, ...mockItems].map(({ imgUrl, like, title }, index) => (
+            <Item key={index} imgUrl={imgUrl} like={like} title={title} />
           ))}
         </ItemList>
       </StyledLayout>

@@ -24,7 +24,7 @@ const globalCss = css`
     word-break: keep-all;
     overflow-wrap: break-word;
 
-    background-color: ${theme.colors.gray120};
+    /* background-color: ${theme.colors.gray120}; */
   }
 
   button {
@@ -33,6 +33,14 @@ const globalCss = css`
     cursor: pointer;
     padding: 0;
     margin: 0;
+  }
+
+  canvas {
+    display: block;
+    position: fixed;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
   }
 
   input,

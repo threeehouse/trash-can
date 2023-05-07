@@ -17,10 +17,12 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@fxts/core": "^0.14.0",
+    "@types/three": "^0.152.0",
     "framer-motion": "^10.12.7",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "three": "^0.152.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

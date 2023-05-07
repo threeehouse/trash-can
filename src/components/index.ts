@@ -5,3 +5,4 @@ export * from './Button';
 export * from './PageTransition';
 export * from './Item';
 export * from './ItemList';
+export * from './ThreeBackground';
