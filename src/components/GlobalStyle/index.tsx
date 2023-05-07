@@ -60,5 +60,6 @@ const globalCss = css`
 
   ul {
     margin: 0;
+    padding: 0;
   }
 `;

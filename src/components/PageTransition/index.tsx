@@ -21,7 +21,7 @@ export function PageTransition({ children, ...rest }: PageTransitionProps) {
 
   return (
     <motion.div
-      style={{ position: 'absolute' }}
+      style={{ position: 'absolute', width: '100%' }}
       layout={true}
       initial={onTheRight}
       animate={inTheCenter}
