@@ -72,10 +72,10 @@ export function ThreeBackground() {
       meshes.forEach(({ mesh }) => scene.add(mesh));
 
       const render = (time: number) => {
-        time *= 0.0005;
+        time *= 0.0006;
         meshes.forEach(({ mesh, y, z }) => {
-          mesh.position.y = Math.sin(time) * y * 1.6;
-          mesh.position.z = Math.cos(time * 1.2) * z * 2 + 1;
+          mesh.position.y = Math.sin(time * 0.7) * y * 1.6;
+          mesh.position.z = Math.cos(time) * z * 2 + 1;
           mesh.rotation.y = time;
         });
 
