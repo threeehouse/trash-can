@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { HTMLMotionProps, motion } from 'framer-motion';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import { theme } from '../../theme';
@@ -37,17 +38,23 @@ const imgVariant = {
 const descVariant = {
   entry: {
     opacity: 0,
+    y: 25,
+    x: '-50%',
   },
   animate: {
     opacity: 1,
+    y: '50%',
+    x: '-50%',
     transition: {
-      duration: 0.4,
+      duration: 0.3,
     },
   },
   leave: {
     opacity: 0,
+    y: 25,
+    x: '-50%',
     transition: {
-      duration: 0.4,
+      duration: 1,
     },
   },
 };
@@ -55,12 +62,11 @@ const descVariant = {
 interface ItemProps extends Partial<HTMLMotionProps<'button'>> {
   imgUrl: string;
   like: number;
-  hate: number;
   title: string;
 }
 
-export function Item({ imgUrl, like, hate, title }: ItemProps) {
-  console.log(like, hate, title);
+export function Item({ imgUrl, like, title }: ItemProps) {
+  console.log(like, title);
   const [hovered, setHovered] = useState(false);
   const handleMouseEnter = () => {
     setHovered(true);
@@ -78,11 +84,14 @@ export function Item({ imgUrl, like, hate, title }: ItemProps) {
       onMouseLeave={handleMouseLeave}
     >
       <StyledImage src={imgUrl} alt={title} variants={imgVariant} whileHover="hover" />
-      {hovered ? (
+      {hovered && (
         <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
-          <Text variant="title04">{title}</Text>
+          <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
+          <Text variant="title03" color="gray120">
+            {like}
+          </Text>
         </StyledDescription>
-      ) : null}
+      )}
     </StyledItem>
   );
 }
@@ -95,11 +104,13 @@ const StyledImage = styled(motion.img)`
 
 const StyledDescription = styled(motion.div)`
   position: absolute;
-  top: 50%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
   left: 50%;
+  height: 50%;
   transform: translate(-50%, -50%);
-  /* opacity: 0;
-  transition: opacity 0.2s ease-in-out; */
+  color: ${theme.colors.gray110};
 `;
 
 const StyledItem = styled(motion.li)`
@@ -111,6 +122,4 @@ const StyledItem = styled(motion.li)`
   border-radius: 50%;
   cursor: pointer;
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
 `;
