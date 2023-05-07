@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useRef } from 'react';
 
-import THREE from '../../../public/static/three';
+import { FontLoader, THREE, TextGeometry, helvetikerFont } from '../../../public/static/three';
 
 const initRenderer = (container: HTMLDivElement) => {
   const renderer = new THREE.WebGLRenderer({
@@ -14,6 +14,8 @@ const initRenderer = (container: HTMLDivElement) => {
 
 export function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const loader = new FontLoader();
+  const font = loader.parse(helvetikerFont);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -28,16 +30,31 @@ export function ThreeBackground() {
       light.position.set(-1, 2, 4);
       scene.add(light);
 
-      const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-      const material = new THREE.MeshStandardMaterial({ color: 0x004fff });
-      const cube = new THREE.Mesh(geometry, material);
+      const geometry = new TextGeometry('3', {
+        font,
+        size: 0.6,
+        height: 0.1,
+        curveSegments: 1,
+        bevelEnabled: true,
+        bevelThickness: 0.01,
+        bevelSize: 0.01,
+        bevelOffset: 0.003,
+        bevelSegments: 3,
+      }).center();
 
-      scene.add(cube);
+      const material = new THREE.MeshStandardMaterial({
+        color: '#689F38',
+        roughness: 0.3,
+        metalness: 0.7,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
 
       const render = (time: number) => {
         time *= 0.0005;
-        cube.rotation.x = time;
-        cube.rotation.y = time;
+        mesh.rotation.x = time;
+        mesh.rotation.y = time;
 
         renderer.render(scene, camera);
         requestAnimationFrame(render);
@@ -49,7 +66,7 @@ export function ThreeBackground() {
         container.removeChild(renderer.domElement);
       };
     }
-  }, []);
+  }, [font]);
 
   return <StyledContainer ref={containerRef} />;
 }
