@@ -34,7 +34,7 @@ export function ThreeBackground() {
       camera.lookAt(new THREE.Vector3(0, 0, 0)); // 카메라가 0, 0, 0을 바라보게 함
       const renderer = initRenderer(container);
 
-      const light = new THREE.DirectionalLight(0xffffff, 1);
+      const light = new THREE.DirectionalLight(0x63e043, 1);
       light.position.set(-1, 2, 4);
       scene.add(light);
 
@@ -51,7 +51,7 @@ export function ThreeBackground() {
       }).center();
 
       const material = new THREE.MeshStandardMaterial({
-        color: '#689F38',
+        color: '#63e043',
         roughness: 0.3,
         metalness: 0.7,
       });
