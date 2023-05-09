@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import { FontLoader, THREE, TextGeometry, helvetikerFont } from '../../../public/static/three';
 
@@ -22,8 +22,11 @@ const getRandomPositions = () =>
 
 export function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const loader = new FontLoader();
-  const font = loader.parse(helvetikerFont);
+  // const loader = new FontLoader();
+  const font = useMemo(() => {
+    const loader = new FontLoader();
+    return loader.parse(helvetikerFont);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
