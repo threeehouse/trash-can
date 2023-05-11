@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import { theme } from '../../theme';
+import { Image as ItemImage } from '../Image';
 import { Text } from '../Text';
 
 const itemVariant = {
@@ -25,15 +26,15 @@ const itemVariant = {
   },
 };
 
-const imgVariant = {
-  hover: {
-    opacity: 0.1,
-    scale: 1.1,
-    transition: {
-      duration: 0.2,
-    },
-  },
-};
+// const imgVariant = {
+//   hover: {
+//     opacity: 0.1,
+//     scale: 1.1,
+//     transition: {
+//       duration: 0.2,
+//     },
+//   },
+// };
 
 const descVariant = {
   entry: {
@@ -82,7 +83,8 @@ export function Item({ imgUrl, like, title }: ItemProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <StyledImage src={imgUrl} alt={title} variants={imgVariant} whileHover="hover" />
+      {/* <StyledImage src={imgUrl} alt={title} variants={imgVariant} whileHover="hover" /> */}
+      <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} />
       {hovered && (
         <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
           <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
@@ -95,7 +97,7 @@ export function Item({ imgUrl, like, title }: ItemProps) {
   );
 }
 
-const StyledImage = styled(motion.img)`
+const StyledImage = styled(ItemImage)`
   width: 100%;
   height: 100%;
   position: absolute;
