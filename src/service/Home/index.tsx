@@ -48,7 +48,7 @@ function Home() {
 }
 
 const StyledLayout = styled('main')`
-  max-width: 900px;
+  max-width: 780px;
   width: 100%;
   margin: 0 auto;
 `;
