@@ -1,8 +1,8 @@
 import { Fragment, PropsWithChildren, ReactNode, createContext, useCallback, useMemo, useState } from 'react';
 
 export const OverlayContext = createContext<{
-  mount: (id: string, element: ReactNode) => void;
-  unmount: (id: string) => void;
+  mount(id: string, element: ReactNode): void;
+  unmount(id: string): void;
 } | null>(null);
 
 export function OverlayProvider({ children }: PropsWithChildren) {
