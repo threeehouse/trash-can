@@ -22,13 +22,13 @@ let observer: IntersectionObserver | null = null;
 const LOAD_IMG_EVENT_TYPE = 'loadImage';
 
 const onIntersection: IntersectionObserverCallback = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
+  entries
+    .filter(entry => entry.isIntersecting)
+    .forEach(entry => {
       // IntersectionObserver가 인식한 이미지가 보여지는 영역에 들어왔을 때,
       observer.unobserve(entry.target); // 기존 element observe를 해제한다.
       entry.target.dispatchEvent(new CustomEvent(LOAD_IMG_EVENT_TYPE)); // 커스텀 이벤트를 호출한다.
-    }
-  });
+    });
 };
 
 export const Image = ({
