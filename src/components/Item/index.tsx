@@ -1,36 +1,20 @@
 import styled from '@emotion/styled';
-import { HTMLMotionProps, motion } from 'framer-motion';
+import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 
 import { theme } from '../../theme';
+import { Image as ItemImage } from '../Image';
 import { Text } from '../Text';
 
 const itemVariant = {
   entry: {
-    borderRadius: '50%',
+    scale: 0.6,
   },
-  hover: {
-    borderRadius: '10%',
-    backgroundColor: theme.colors.primary_deep,
+  animate: {
+    scale: 1,
     transition: {
-      duration: 0.2,
-    },
-    descOpacity: {
-      opacity: 1,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  },
-};
-
-const imgVariant = {
-  hover: {
-    opacity: 0.1,
-    scale: 1.1,
-    transition: {
-      duration: 0.2,
+      duration: 0.4,
     },
   },
 };
@@ -46,7 +30,7 @@ const descVariant = {
     y: '50%',
     x: '-50%',
     transition: {
-      duration: 0.3,
+      duration: 0.2,
     },
   },
   leave: {
@@ -54,7 +38,7 @@ const descVariant = {
     y: 25,
     x: '-50%',
     transition: {
-      duration: 1,
+      duration: 0.2,
     },
   },
 };
@@ -75,27 +59,32 @@ export function Item({ imgUrl, like, title }: ItemProps) {
     setHovered(false);
   };
   return (
-    <StyledItem
-      variants={itemVariant}
-      initial="entry"
-      whileHover="hover"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <StyledImage src={imgUrl} alt={title} variants={imgVariant} whileHover="hover" />
-      {hovered && (
-        <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
-          <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
-          <Text variant="title03" color="gray120">
-            {like}
-          </Text>
-        </StyledDescription>
-      )}
-    </StyledItem>
+    <AnimatePresence>
+      <StyledItem
+        variants={itemVariant}
+        initial="entry"
+        whileInView="animate"
+        viewport={{ once: true }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} mode="cover" threshold={0.1} />
+        <AnimatePresence mode="wait">
+          {hovered && (
+            <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
+              <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
+              <Text variant="title03" color="gray120">
+                {like}
+              </Text>
+            </StyledDescription>
+          )}
+        </AnimatePresence>
+      </StyledItem>
+    </AnimatePresence>
   );
 }
 
-const StyledImage = styled(motion.img)`
+const StyledImage = styled(ItemImage)`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -114,7 +103,8 @@ const StyledDescription = styled(motion.div)`
 
 const StyledItem = styled(motion.li)`
   width: 30%;
-  padding-bottom: 30%;
+  border-radius: 50%;
+  padding-bottom: 35%;
   margin: 20px 0;
   position: relative;
   overflow: hidden;
