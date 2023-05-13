@@ -30,7 +30,7 @@ const descVariant = {
     y: '50%',
     x: '-50%',
     transition: {
-      duration: 0.3,
+      duration: 0.2,
     },
   },
   leave: {
@@ -38,7 +38,7 @@ const descVariant = {
     y: 25,
     x: '-50%',
     transition: {
-      duration: 1,
+      duration: 0.2,
     },
   },
 };
@@ -67,15 +67,17 @@ export function Item({ imgUrl, like, title }: ItemProps) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} />
-        {hovered && (
-          <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
-            <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
-            <Text variant="title03" color="gray120">
-              {like}
-            </Text>
-          </StyledDescription>
-        )}
+        <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} mode="cover" threshold={0.9} />
+        <AnimatePresence mode="wait">
+          {hovered && (
+            <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
+              <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
+              <Text variant="title03" color="gray120">
+                {like}
+              </Text>
+            </StyledDescription>
+          )}
+        </AnimatePresence>
       </StyledItem>
     </AnimatePresence>
   );
@@ -101,7 +103,7 @@ const StyledDescription = styled(motion.div)`
 const StyledItem = styled(motion.li)`
   width: 30%;
   border-radius: 50%;
-  padding-bottom: 30%;
+  padding-bottom: 35%;
   margin: 20px 0;
   position: relative;
   overflow: hidden;
