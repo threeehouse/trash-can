@@ -63,11 +63,12 @@ export function Item({ imgUrl, like, title }: ItemProps) {
       <StyledItem
         variants={itemVariant}
         initial="entry"
-        animate="animate"
+        whileInView="animate"
+        viewport={{ once: true }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} mode="cover" threshold={0.9} />
+        <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} mode="cover" threshold={0.1} />
         <AnimatePresence mode="wait">
           {hovered && (
             <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
