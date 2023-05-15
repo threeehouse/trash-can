@@ -22,7 +22,6 @@ const getRandomPositions = () =>
 
 export function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
-  // const loader = new FontLoader();
   const font = useMemo(() => {
     const loader = new FontLoader();
     return loader.parse(helvetikerFont);
@@ -41,22 +40,22 @@ export function ThreeBackground() {
       light.position.set(-1, 2, 4);
       scene.add(light);
 
-      const geometry = new TextGeometry('3', {
+      const geometry = new TextGeometry('?', {
         font,
-        size: 0.36,
+        size: 0.34,
         height: 0.06,
-        curveSegments: 1,
+        curveSegments: 0.1,
         bevelEnabled: true,
-        bevelThickness: 0.01,
+        bevelThickness: 0.02,
         bevelSize: 0.01,
         bevelOffset: 0.003,
-        bevelSegments: 3,
+        bevelSegments: 2,
       }).center();
 
       const material = new THREE.MeshStandardMaterial({
-        color: '#63e043',
-        roughness: 0.3,
-        metalness: 0.7,
+        color: '#35aa18',
+        roughness: 0.4,
+        metalness: 0.6,
       });
 
       const positions = getRandomPositions();
