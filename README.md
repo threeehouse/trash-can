@@ -24,7 +24,7 @@ Next.js, TypeScript, Emotion, Framer-Motion, Three.js, Tanstack Query
 - [X] toss/use-overlay의 구현원리 파악하고 모킹해보기
 - [X] 이미지 지연 로딩
 - [ ] Tanstack Query의 기능 최대한 활용해보기
-- [ ] Express로 RESTful API 직접 구현
+- [ ] RESTful API 직접 구현
 - [ ] EC2 인스턴스에 자동 배포
 - [ ] 반응형 웹으로 구현
 - [ ] 웹 접근성 향상
