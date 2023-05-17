@@ -14,8 +14,11 @@ export function OverlayProvider({ children }: PropsWithChildren) {
   const unmount = useCallback((id: string) => {
     setOverlayById(_overlayById => {
       const cloneMap = new Map(_overlayById);
-      cloneMap.delete(id);
-      return cloneMap;
+      if (cloneMap.delete(id)) {
+        return cloneMap;
+      } else {
+        throw new Error('존재하지 않는 Overlay Id 입니다.');
+      }
     });
   }, []);
 

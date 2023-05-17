@@ -4,22 +4,18 @@ import { OverlayControlRef, OverlayController } from './OverlayController';
 import { OverlayContext } from './OverlayProvider';
 import { CreateOverlayElement } from './type';
 
-let elementId = 1;
+interface Overlay {
+  id: string;
+}
 
-export function useOverlay() {
+export function useOverlay({ id }: Overlay) {
   const context = useContext(OverlayContext);
-  console.log(elementId);
 
   if (context === null) {
     throw new Error('OverlayProvider안에서 사용되어야 합니다!');
   }
 
   const { mount, unmount } = context;
-
-  // AS IS
-  // const [id] = useState(() => String(elementId++));
-  // TO BE
-  const id = String(elementId++);
 
   const overlayRef = useRef<OverlayControlRef | null>(null);
 
