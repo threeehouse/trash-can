@@ -1,1 +1,2 @@
-export * from './useOverlay';
+export * from './overlay';
+export * from './modal';
