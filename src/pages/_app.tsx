@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import { GlobalStyle, Navigation, ThreeBackground } from '../components';
-import { OverlayProvider } from '../utils';
+import { OverlayProvider } from '../hooks';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
