@@ -4,11 +4,7 @@ import { OverlayControlRef, OverlayController } from './OverlayController';
 import { OverlayContext } from './OverlayProvider';
 import { CreateOverlayElement } from './type';
 
-interface Overlay {
-  id: string;
-}
-
-export function useOverlay({ id }: Overlay) {
+export function useOverlay(id: string) {
   const context = useContext(OverlayContext);
 
   if (context === null) {
