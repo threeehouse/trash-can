@@ -3,6 +3,7 @@ import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { useDetailItemModal } from '../../hooks';
 import { theme } from '../../theme';
 import { Image as ItemImage } from '../Image';
 import { Text } from '../Text';
@@ -51,14 +52,8 @@ interface ItemProps extends Partial<HTMLMotionProps<'button'>> {
 
 export function Item({ imgUrl, like, title }: ItemProps) {
   const [hovered, setHovered] = useState(false);
+  const openItemModal = useDetailItemModal();
 
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
   return (
     <AnimatePresence>
       <StyledItem
@@ -66,8 +61,15 @@ export function Item({ imgUrl, like, title }: ItemProps) {
         initial="entry"
         whileInView="animate"
         viewport={{ once: true }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onClick={() => {
+          openItemModal({ imgUrl, like, title });
+        }}
+        onMouseEnter={() => {
+          setHovered(true);
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+        }}
       >
         <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} mode="cover" threshold={0.1} />
         <AnimatePresence mode="wait">

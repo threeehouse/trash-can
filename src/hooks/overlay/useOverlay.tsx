@@ -27,6 +27,7 @@ export function useOverlay(id: string) {
         mount(
           id,
           <OverlayController
+            key={Date.now()}
             ref={overlayRef}
             overlayElement={overlayElement}
             onExit={() => {
