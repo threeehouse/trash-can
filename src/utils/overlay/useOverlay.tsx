@@ -8,6 +8,7 @@ let elementId = 1;
 
 export function useOverlay() {
   const context = useContext(OverlayContext);
+  console.log(elementId);
 
   if (context === null) {
     throw new Error('OverlayProvider안에서 사용되어야 합니다!');
