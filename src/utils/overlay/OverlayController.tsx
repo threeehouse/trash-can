@@ -27,5 +27,5 @@ export const OverlayController = forwardRef(function (
     });
   }, []);
 
-  return <OverlayElement isOpen={isOpen} close={handleClose} exit={onExit} />;
+  return <OverlayElement isOpen={isOpen} close={handleClose} unmount={onExit} />;
 });

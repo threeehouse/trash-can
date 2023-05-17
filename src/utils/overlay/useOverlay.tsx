@@ -45,7 +45,7 @@ export function useOverlay() {
       close: () => {
         overlayRef.current?.close();
       },
-      exit: () => {
+      unmount: () => {
         unmount(id);
       },
     }),
