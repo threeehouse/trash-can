@@ -2,7 +2,7 @@
 
 # Introduce
 ![trash-can-intro](https://github.com/threeehouse/trash-can/assets/47452547/aa401663-74f4-4ba9-aefc-33948b5de07f)
-- 인상깊은 쓰레기를 올리는 공간입니다.
+- 정든 쓰레기를 올리는 공간입니다.
 - 불쾌할 수 있는 게시물을 방지하기 위해 기본적으로 블러처리 되어있습니다.
 - 비록 쓰레기지만 검색되길 원해서 Server Side Rendering을 구현하였습니다.
 - 마음에 드는 쓰레기에 조용히 좋아요를 누를 수 있습니다.
@@ -26,6 +26,7 @@ Next.js, TypeScript, Emotion, Framer-Motion, Three.js, Tanstack Query
 - [ ] Tanstack Query의 기능 최대한 활용해보기
 - [ ] RESTful API 직접 구현
 - [ ] EC2 인스턴스에 자동 배포
+- [ ] 반응형 웹으로 구현
 - [ ] 반응형 웹으로 구현
 - [ ] 웹 접근성 향상
 - [ ] 코드 리팩터링 및 성능 향상
