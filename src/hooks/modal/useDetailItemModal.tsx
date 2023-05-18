@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { ComponentProps } from 'react';
 
 import { Modal } from './Modal';
 import { Image, Text } from '../../components';
@@ -7,7 +6,7 @@ import { overlayKey, useOverlay } from '../overlay';
 
 export const useDetailItemModal = () => {
   const overlay = useOverlay(overlayKey.HOME);
-  const openItemModal = (props: ComponentProps<typeof DetailItem>) => {
+  const openItemModal = (props: Props) => {
     overlay.open(({ isOpen, close }) => (
       <Modal isOpen={isOpen} close={close}>
         <DetailItem {...props} />
@@ -26,11 +25,10 @@ interface Props {
 function DetailItem({ imgUrl, pray, title }: Props) {
   return (
     <StyledDetailItem>
-      <div css={{ height: '100px' }}></div>
-      <Text variant="title04" as="h4" color="primary">
+      <Text variant="title04" as="h4" color="primary" css={{ marginTop: '10px' }}>
         Rest In Peace
       </Text>
-      <Text variant="title03" as="h3" css={{ marginBottom: '30px' }}>
+      <Text variant="title03" as="h3" css={{ marginBottom: '20px' }}>
         {title}
       </Text>
       <Image src={imgUrl} alt={title} width={350} height={350} mode="cover" />

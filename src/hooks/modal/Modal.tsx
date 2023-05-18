@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { PreventClickEvent } from '../../components';
 import { theme } from '../../theme';
 
 interface Props {
@@ -15,7 +16,9 @@ export function Modal({ isOpen, close, children }: Props) {
         close();
       }}
     >
-      <StyledModal>{children}</StyledModal>
+      <PreventClickEvent>
+        <StyledModal>{children}</StyledModal>
+      </PreventClickEvent>
     </Dimmer>
   ) : null;
 }
@@ -33,10 +36,12 @@ const StyledModal = styled.div`
 const Dimmer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 0%;
+  left: 0;
+  top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
 `;
