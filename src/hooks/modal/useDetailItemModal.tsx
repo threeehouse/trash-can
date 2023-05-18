@@ -26,10 +26,11 @@ interface Props {
 function DetailItem({ imgUrl, pray, title }: Props) {
   return (
     <StyledDetailItem>
+      <div css={{ height: '100px' }}></div>
       <Text variant="title04" as="h4" color="primary">
         Rest In Peace
       </Text>
-      <Text variant="title03" as="h3">
+      <Text variant="title03" as="h3" css={{ marginBottom: '30px' }}>
         {title}
       </Text>
       <Image src={imgUrl} alt={title} width={350} height={350} mode="cover" />
