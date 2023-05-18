@@ -16,6 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "downlevelIteration": true,
+    "jsxImportSource": "@emotion/react",
     "paths": {
       "@/*": ["src/*"]
     }

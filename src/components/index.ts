@@ -7,3 +7,4 @@ export * from './Item';
 export * from './ItemList';
 export * from './ThreeBackground';
 export * from './Image';
+export * from './PreventClickEvent';

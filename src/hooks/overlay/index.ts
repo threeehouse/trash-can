@@ -1,2 +1,3 @@
 export { OverlayProvider } from './OverlayProvider';
 export { useOverlay } from './useOverlay';
+export { overlayKey } from './key';

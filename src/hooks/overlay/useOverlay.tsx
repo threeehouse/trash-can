@@ -4,9 +4,7 @@ import { OverlayControlRef, OverlayController } from './OverlayController';
 import { OverlayContext } from './OverlayProvider';
 import { CreateOverlayElement } from './type';
 
-let elementId = 1;
-
-export function useOverlay() {
+export function useOverlay(id: string) {
   const context = useContext(OverlayContext);
 
   if (context === null) {
@@ -14,11 +12,6 @@ export function useOverlay() {
   }
 
   const { mount, unmount } = context;
-
-  // AS IS
-  // const [id] = useState(() => String(elementId++));
-  // TO BE
-  const id = String(elementId++);
 
   const overlayRef = useRef<OverlayControlRef | null>(null);
 
@@ -34,6 +27,7 @@ export function useOverlay() {
         mount(
           id,
           <OverlayController
+            key={Date.now()}
             ref={overlayRef}
             overlayElement={overlayElement}
             onExit={() => {
@@ -45,7 +39,7 @@ export function useOverlay() {
       close: () => {
         overlayRef.current?.close();
       },
-      exit: () => {
+      unmount: () => {
         unmount(id);
       },
     }),

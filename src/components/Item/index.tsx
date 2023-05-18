@@ -3,6 +3,7 @@ import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { useDetailItemModal } from '../../hooks';
 import { theme } from '../../theme';
 import { Image as ItemImage } from '../Image';
 import { Text } from '../Text';
@@ -45,19 +46,14 @@ const descVariant = {
 
 interface ItemProps extends Partial<HTMLMotionProps<'button'>> {
   imgUrl: string;
-  like: number;
+  pray: number;
   title: string;
 }
 
-export function Item({ imgUrl, like, title }: ItemProps) {
+export function Item({ imgUrl, pray, title }: ItemProps) {
   const [hovered, setHovered] = useState(false);
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
+  const openItemModal = useDetailItemModal();
 
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
   return (
     <AnimatePresence>
       <StyledItem
@@ -65,16 +61,23 @@ export function Item({ imgUrl, like, title }: ItemProps) {
         initial="entry"
         whileInView="animate"
         viewport={{ once: true }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onClick={() => {
+          openItemModal({ imgUrl, pray, title });
+        }}
+        onMouseEnter={() => {
+          setHovered(true);
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+        }}
       >
         <StyledImage lazy={true} src={imgUrl} alt={title} width={100} height={100} mode="cover" threshold={0.1} />
         <AnimatePresence mode="wait">
           {hovered && (
             <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
-              <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
+              <Image src="/icon/pray.png" alt="pray Icon" width={25} height={25} />
               <Text variant="title03" color="gray120">
-                {like}
+                {pray}
               </Text>
             </StyledDescription>
           )}
