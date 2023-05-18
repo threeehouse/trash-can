@@ -46,11 +46,11 @@ const descVariant = {
 
 interface ItemProps extends Partial<HTMLMotionProps<'button'>> {
   imgUrl: string;
-  like: number;
+  pray: number;
   title: string;
 }
 
-export function Item({ imgUrl, like, title }: ItemProps) {
+export function Item({ imgUrl, pray, title }: ItemProps) {
   const [hovered, setHovered] = useState(false);
   const openItemModal = useDetailItemModal();
 
@@ -62,7 +62,7 @@ export function Item({ imgUrl, like, title }: ItemProps) {
         whileInView="animate"
         viewport={{ once: true }}
         onClick={() => {
-          openItemModal({ imgUrl, like, title });
+          openItemModal({ imgUrl, pray, title });
         }}
         onMouseEnter={() => {
           setHovered(true);
@@ -75,9 +75,9 @@ export function Item({ imgUrl, like, title }: ItemProps) {
         <AnimatePresence mode="wait">
           {hovered && (
             <StyledDescription variants={descVariant} initial="entry" animate="animate" exit="leave">
-              <Image src="/icon/like.png" alt="Like Icon" width={25} height={25} />
+              <Image src="/icon/pray.png" alt="pray Icon" width={25} height={25} />
               <Text variant="title03" color="gray120">
-                {like}
+                {pray}
               </Text>
             </StyledDescription>
           )}

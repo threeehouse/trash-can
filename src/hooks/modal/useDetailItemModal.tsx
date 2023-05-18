@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { ComponentProps } from 'react';
 
 import { Modal } from './Modal';
@@ -18,16 +19,27 @@ export const useDetailItemModal = () => {
 
 interface Props {
   imgUrl: string;
-  like: number;
+  pray: number;
   title: string;
 }
 
-function DetailItem({ imgUrl, like, title }: Props) {
+function DetailItem({ imgUrl, pray, title }: Props) {
   return (
-    <div>
-      <Text variant="title04">{title}</Text>
-      <Text variant="title04">{like}</Text>
+    <StyledDetailItem>
+      <Text variant="title04" as="h4" color="primary">
+        Rest In Peace
+      </Text>
+      <Text variant="title03" as="h3">
+        {title}
+      </Text>
       <Image src={imgUrl} alt={title} width={300} height={300} mode="cover" />
-    </div>
+      <Text variant="title04" as="h3">
+        {pray}
+      </Text>
+    </StyledDetailItem>
   );
 }
+
+const StyledDetailItem = styled('div')`
+  display: block;
+`;

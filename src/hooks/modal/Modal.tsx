@@ -21,15 +21,14 @@ export function Modal({ isOpen, close, children }: Props) {
 }
 
 const StyledModal = styled.div`
-  position: relative;
-  vertical-align: auto;
+  /* position: relative; */
+  /* vertical-align: auto; */
   text-align: center;
   padding: 28px;
   width: 600px;
   background-color: ${theme.colors.gray110};
-  border: 1px solid ${theme.colors.gray100};
   border-radius: 16px;
-  z-index: 1011;
+  z-index: 100;
   margin: auto;
 `;
 
@@ -41,5 +40,5 @@ const Dimmer = styled.div`
   height: 100%;
   top: 0%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1010;
+  z-index: 100;
 `;
