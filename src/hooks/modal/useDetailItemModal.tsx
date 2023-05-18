@@ -32,7 +32,7 @@ function DetailItem({ imgUrl, pray, title }: Props) {
       <Text variant="title03" as="h3">
         {title}
       </Text>
-      <Image src={imgUrl} alt={title} width={300} height={300} mode="cover" />
+      <Image src={imgUrl} alt={title} width={350} height={350} mode="cover" />
       <Text variant="title04" as="h3">
         {pray}
       </Text>

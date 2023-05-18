@@ -21,11 +21,9 @@ export function Modal({ isOpen, close, children }: Props) {
 }
 
 const StyledModal = styled.div`
-  /* position: relative; */
-  /* vertical-align: auto; */
   text-align: center;
   padding: 28px;
-  width: 600px;
+  width: 450px;
   background-color: ${theme.colors.gray110};
   border-radius: 16px;
   z-index: 100;
