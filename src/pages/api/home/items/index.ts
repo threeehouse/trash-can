@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       result: items,
     });
   } catch {
-    return res.status(400).json({
+    return res.status(500).json({
       isSuccess: false,
       message: '아이템 조회에 실패하였습니다.',
     });

@@ -13,6 +13,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   }
 
+  if (!body.imgUrl || !body.title || !body.pray || !body.userIP) {
+    return res.status(400).json({ error: '올바르지 않은 필드값 입니다.' });
+  }
+
   const newItem = new ItemModel(body);
 
   try {
@@ -23,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       result: item,
     });
   } catch {
-    return res.status(400).json({
+    return res.status(500).json({
       isSuccess: false,
       message: '아이템 등록에 실패하였습니다.',
     });
