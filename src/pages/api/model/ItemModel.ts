@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export const ItemSchema = new mongoose.Schema({
+const ItemSchema = new mongoose.Schema({
   imgUrl: {
     type: String,
   },
@@ -15,5 +15,4 @@ export const ItemSchema = new mongoose.Schema({
   },
 });
 
-// mongoose.models = {};
-export const ItemModel = mongoose.model('Item', ItemSchema);
+export const ItemModel = mongoose.models.Item || mongoose.model('Item', ItemSchema);
