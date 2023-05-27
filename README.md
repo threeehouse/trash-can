@@ -13,17 +13,16 @@
 
 # Tech Stack
 ## FE
-Next.js, TypeScript, Emotion, Framer-Motion, Three.js, Tanstack Query
+Next.js, TypeScript, Emotion, Framer-Motion, Three.js
 
 ## BE
 준비중 입니다.
 
 # Challenge List
-- [X] 서버 사이드 렌더링 구현
+- [X] SSR, SSG 로 각 페이지 렌더링
 - [X] Framer로 Interactive Motion 구현하기
 - [X] Three.js로 3D 배경화면 제작
 - [X] 이미지 지연 로딩
-- [ ] Tanstack Query의 기능 최대한 활용해보기
 - [X] RESTful API 직접 구현 (with MongoDB)
 - [ ] EC2 인스턴스에 자동 배포
 - [ ] 반응형 웹으로 구현
