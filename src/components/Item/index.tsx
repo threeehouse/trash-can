@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { useDetailItemModal } from '../../hooks';
 import { theme } from '../../theme';
+import { Item as ItemType } from '../../type';
 import { Image as ItemImage } from '../Image';
 import { Text } from '../Text';
 
@@ -44,11 +45,7 @@ const descVariant = {
   },
 };
 
-interface ItemProps extends Partial<HTMLMotionProps<'button'>> {
-  imgUrl: string;
-  pray: number;
-  title: string;
-}
+type ItemProps = ItemType & Partial<HTMLMotionProps<'button'>>;
 
 export function Item({ imgUrl, pray, title }: ItemProps) {
   const [hovered, setHovered] = useState(false);
