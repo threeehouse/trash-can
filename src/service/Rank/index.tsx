@@ -10,4 +10,15 @@ function Rank() {
   );
 }
 
+// export const getServerSideProps: GetServerSideProps<{
+//   items: Item;
+// }> = async () => {
+//   // const res = await http.get('/items');
+//   // const items = res.data.result;
+//   // console.log("server", items);
+//   const items = ['hi'];
+
+//   return { props: { items } };
+// };
+
 export default Rank;
