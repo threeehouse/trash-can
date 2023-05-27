@@ -1,7 +1,7 @@
-// import { ObjectId } from 'mongoose';
+import { ObjectId } from 'mongoose';
 
 export type Item = {
-  _id: number;
+  _id: ObjectId;
   imgUrl: string;
   pray: number;
   title: string;
