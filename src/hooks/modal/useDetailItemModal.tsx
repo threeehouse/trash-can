@@ -34,14 +34,14 @@ function DetailItem({ imgUrl, pray, title }: Props) {
         {title}
       </Text>
       <Image src={imgUrl} alt={title} width={380} height={380} mode="cover" css={{ marginBottom: '20px' }} />
-      {/* <Text variant="headline" color='gray030' css={{ marginBottom: '15px' }}>
-        Please Pray For This
-      </Text> */}
       <Button
         type={clicked ? 'primary' : 'general'}
-        width={200}
+        width={100}
+        icon={<Image src="/icon/pray.png" alt="pray Icon" width={20} height={20} />}
         onClick={() => setClicked(true)}
-      >{`Pray ${pray}`}</Button>
+      >
+        {pray}
+      </Button>
     </StyledDetailItem>
   );
 }
