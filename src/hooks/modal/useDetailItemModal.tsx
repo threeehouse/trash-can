@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ComponentProps, useEffect, useState } from 'react';
 
 import { Modal } from './Modal';
 import { Button, Image, Text } from '../../components';
+import { theme } from '../../theme';
 import { overlayKey, useOverlay } from '../overlay';
 
 export const useDetailItemModal = () => {
@@ -19,12 +21,12 @@ export const useDetailItemModal = () => {
 
 interface Props {
   imgUrl: string;
-  pray: number;
   title: string;
 }
 
-function DetailItem({ imgUrl, pray, title }: Props) {
+function DetailItem({ imgUrl, title }: Props) {
   const [clicked, setClicked] = useState(false);
+  const overlay = useOverlay(overlayKey.MESSAGE);
   return (
     <StyledDetailItem>
       <Text variant="title04" as="h4" color="primary" css={{ marginTop: '10px' }}>
@@ -35,16 +37,57 @@ function DetailItem({ imgUrl, pray, title }: Props) {
       </Text>
       <Image src={imgUrl} alt={title} width={380} height={380} mode="cover" css={{ marginBottom: '20px' }} />
       <Button
-        type={clicked ? 'primary' : 'general'}
-        width={100}
+        type="general"
+        width={180}
+        disabled={clicked}
         icon={<Image src="/icon/pray.png" alt="pray Icon" width={20} height={20} />}
-        onClick={() => setClicked(true)}
+        onClick={() => {
+          // API Call
+          setClicked(true);
+          overlay.open(({ isOpen, close }) => <TextBalloon isOpen={isOpen} close={close} />);
+        }}
       >
-        {pray}
+        {clicked ? 'Thank you' : 'Pray for me'}
       </Button>
     </StyledDetailItem>
   );
 }
+
+function TextBalloon({ isOpen, close }: Omit<ComponentProps<typeof Modal>, 'children'>) {
+  const messages = ['Thank you Bro', 'God Bless You', 'Bye Bye ....'];
+  useEffect(() => {
+    new Promise<void>(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    }).then(() => {
+      close();
+    });
+  });
+  return isOpen ? (
+    <StyledTextBalloon>
+      <Text variant="subhead" color="gray120">
+        {messages[Math.floor(Math.random() * messages.length)]}
+      </Text>
+    </StyledTextBalloon>
+  ) : null;
+}
+
+const StyledTextBalloon = styled(motion.div)`
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 70px;
+  border: 1px solid ${theme.colors.gray120};
+  border-radius: 100%;
+  background-color: ${theme.colors.white};
+  z-index: 101;
+`;
 
 const StyledDetailItem = styled('div')`
   display: flex;
