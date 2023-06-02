@@ -6,7 +6,7 @@ import { ItemModel } from '../../../model';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   connectDB();
   const { body, method } = req;
-  if (!['POST'].includes(method ?? '')) {
+  if (!['PATCH'].includes(method ?? '')) {
     return res.status(405).json({
       isSuccess: false,
       message: '허용되지 않은 메서드 입니다.',
