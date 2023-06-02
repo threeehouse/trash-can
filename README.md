@@ -1,7 +1,8 @@
-<img width="583" alt="trash-can-banner" src="https://github.com/threeehouse/trash-can/assets/47452547/40ebf52c-705e-4ccf-991d-4b01b0379246">
+<img width="100%" alt="trash-can-banner" src="https://github.com/threeehouse/trash-can/assets/47452547/40ebf52c-705e-4ccf-991d-4b01b0379246">
 
 # Introduce
-![trash-can-intro](https://github.com/threeehouse/trash-can/assets/47452547/aa401663-74f4-4ba9-aefc-33948b5de07f)
+![trash-can-intro](https://github.com/threeehouse/trash-can/assets/47452547/e7c6f465-0e77-4406-ad19-aff288e609b4)
+
 - 정든 쓰레기를 올리는 공간입니다.
 - 불쾌할 수 있는 게시물을 방지하기 위해 기본적으로 블러처리 되어있습니다.
 - SSR과 SSG를 활용하였습니다.
