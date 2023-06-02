@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { PreventClickEvent } from '../../components';
 import { theme } from '../../theme';
@@ -10,20 +11,37 @@ interface Props {
 }
 
 export function Modal({ isOpen, close, children }: Props) {
-  return isOpen ? (
-    <Dimmer
-      onClick={() => {
-        close();
-      }}
-    >
-      <PreventClickEvent>
-        <StyledModal>{children}</StyledModal>
-      </PreventClickEvent>
-    </Dimmer>
-  ) : null;
+  return (
+    <AnimatePresence>
+      {isOpen ? (
+        <Dimmer
+          onClick={() => {
+            close();
+          }}
+        >
+          <PreventClickEvent>
+            <StyledModal
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {children}
+            </StyledModal>
+          </PreventClickEvent>
+        </Dimmer>
+      ) : null}
+    </AnimatePresence>
+  );
 }
 
-const StyledModal = styled.div`
+const StyledModal = styled(motion.div)`
   text-align: center;
   padding: 28px;
   width: 450px;

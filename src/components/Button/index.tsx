@@ -21,6 +21,7 @@ interface Props extends Omit<HTMLMotionProps<'button'>, 'type'> {
   buttonStyle?: React.CSSProperties;
   disabled?: boolean;
   htmlType?: ButtonHTMLType;
+  icon?: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -71,6 +72,7 @@ export function Button({
   disabled,
   buttonStyle,
   htmlType,
+  icon,
   children,
   ...rest
 }: Props) {
@@ -86,6 +88,7 @@ export function Button({
       type={htmlType}
       {...rest}
     >
+      {icon}
       <Text color={BUTTON_TEXT_COLOR[type]} variant={BUTTON_TEXT_SIZE[size]}>
         {children}
       </Text>
@@ -103,7 +106,7 @@ const StyledButton = styled(motion.button)<{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   font-weight: 700;
   font-size: 16px;
 
