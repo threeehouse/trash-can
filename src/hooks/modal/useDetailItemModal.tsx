@@ -5,11 +5,13 @@ import { ComponentProps, useEffect, useState } from 'react';
 import { Modal } from './Modal';
 import { Button, Image, Text } from '../../components';
 import { theme } from '../../theme';
+import { Item } from '../../type';
+import { http } from '../../utils';
 import { overlayKey, useOverlay } from '../overlay';
 
 export const useDetailItemModal = () => {
   const overlay = useOverlay(overlayKey.HOME);
-  const openItemModal = (props: Props) => {
+  const openItemModal = (props: ComponentProps<typeof DetailItem>) => {
     overlay.open(({ isOpen, close }) => (
       <Modal isOpen={isOpen} close={close}>
         <DetailItem {...props} />
@@ -19,12 +21,7 @@ export const useDetailItemModal = () => {
   return openItemModal;
 };
 
-interface Props {
-  imgUrl: string;
-  title: string;
-}
-
-function DetailItem({ imgUrl, title }: Props) {
+function DetailItem({ imgUrl, title, _id }: Omit<Item, 'pray' | 'userIP'>) {
   const [clicked, setClicked] = useState(false);
   const overlay = useOverlay(overlayKey.MESSAGE);
   return (
@@ -41,8 +38,8 @@ function DetailItem({ imgUrl, title }: Props) {
         width={200}
         disabled={clicked}
         icon={<Image src="/icon/pray.png" alt="pray Icon" width={20} height={20} />}
-        onClick={() => {
-          // API Call
+        onClick={async () => {
+          await http.patch('/home/item/pray', { itemId: _id });
           setClicked(true);
           overlay.open(({ isOpen, close }) => <TextBalloon isOpen={isOpen} close={close} />);
         }}

@@ -47,7 +47,7 @@ const descVariant = {
 
 type ItemProps = ItemType & Partial<HTMLMotionProps<'button'>>;
 
-export function Item({ imgUrl, pray, title }: ItemProps) {
+export function Item({ imgUrl, pray, title, _id }: ItemProps) {
   const [hovered, setHovered] = useState(false);
   const openItemModal = useDetailItemModal();
 
@@ -59,7 +59,7 @@ export function Item({ imgUrl, pray, title }: ItemProps) {
         whileInView="animate"
         viewport={{ once: true }}
         onClick={() => {
-          openItemModal({ imgUrl, pray, title });
+          openItemModal({ imgUrl, title, _id });
         }}
         onMouseEnter={() => {
           setHovered(true);
