@@ -38,7 +38,7 @@ function DetailItem({ imgUrl, title }: Props) {
       <Image src={imgUrl} alt={title} width={380} height={380} mode="cover" css={{ marginBottom: '20px' }} />
       <Button
         type="general"
-        width={180}
+        width={200}
         disabled={clicked}
         icon={<Image src="/icon/pray.png" alt="pray Icon" width={20} height={20} />}
         onClick={() => {
