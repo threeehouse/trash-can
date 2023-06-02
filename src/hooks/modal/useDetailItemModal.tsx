@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ComponentProps, useEffect, useState } from 'react';
 
 import { Modal } from './Modal';
@@ -64,25 +64,48 @@ function TextBalloon({ isOpen, close }: Omit<ComponentProps<typeof Modal>, 'chil
       close();
     });
   });
-  return isOpen ? (
-    <StyledTextBalloon>
-      <Text variant="subhead" color="gray120">
-        {messages[Math.floor(Math.random() * messages.length)]}
-      </Text>
-    </StyledTextBalloon>
-  ) : null;
+  return (
+    <AnimatePresence>
+      {isOpen ? (
+        <StyledTextBalloon
+          initial={{
+            x: '-50%',
+            y: '-50%',
+            scale: 1.3,
+            opacity: 0,
+          }}
+          animate={{
+            x: '-50%',
+            y: '-50%',
+            scale: 1,
+            opacity: 1,
+          }}
+          exit={{
+            x: '-50%',
+            y: '-50%',
+            scale: 1.3,
+            opacity: 0,
+          }}
+          transition={{ duration: 0.7 }}
+        >
+          <Text variant="headline" color="gray120">
+            {messages[Math.floor(Math.random() * messages.length)]}
+          </Text>
+        </StyledTextBalloon>
+      ) : null}
+    </AnimatePresence>
+  );
 }
 
 const StyledTextBalloon = styled(motion.div)`
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 70px;
+  width: 230px;
+  height: 90px;
   border: 1px solid ${theme.colors.gray120};
   border-radius: 100%;
   background-color: ${theme.colors.white};
