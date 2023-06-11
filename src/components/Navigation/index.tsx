@@ -7,25 +7,34 @@ import { theme } from '../../theme';
 import { Button, ButtonType } from '../Button';
 
 type NavButton = {
-  homeType: ButtonType;
-  rankType: ButtonType;
+  homeType: Omit<ButtonType, 'general'>;
+  rankType: Omit<ButtonType, 'general'>;
 };
 
-const useNavigation = () => {
-  const [navButton, setNavButton] = useState<NavButton>({
-    homeType: 'primary',
-    rankType: 'ghost',
-  });
+const getTypeByPath = (path: string) => {
+  switch (path) {
+    case '/home':
+      return { homeType: 'primary', rankType: 'ghost' };
+    case '/rank':
+      return { homeType: 'ghost', rankType: 'primary' };
+    default:
+      return { homeType: 'primary', rankType: 'ghost' };
+  }
+};
+
+const useNavigation = (path: string) => {
+  const [navButton, setNavButton] = useState<NavButton>(getTypeByPath(path));
 
   const setNav = (path: string) => {
-    switch (path) {
-      case '/home':
-        setNavButton({ homeType: 'primary', rankType: 'ghost' });
-        break;
-      case '/rank':
-        setNavButton({ homeType: 'ghost', rankType: 'primary' });
-        break;
-    }
+    setNavButton(getTypeByPath(path));
+    // switch (path) {
+    //   case '/home':
+    //     setNavButton({ homeType: 'primary', rankType: 'ghost' });
+    //     break;
+    //   case '/rank':
+    //     setNavButton({ homeType: 'ghost', rankType: 'primary' });
+    //     break;
+    // }
   };
 
   return { navButton, setNav };
@@ -59,7 +68,7 @@ const navVariant = {
 
 export function Navigation() {
   const router = useRouter();
-  const { navButton, setNav } = useNavigation();
+  const { navButton, setNav } = useNavigation(router.pathname);
   const clickRouter = (path: string) => {
     setNav(path);
     router.push(path, undefined, {
@@ -70,7 +79,7 @@ export function Navigation() {
   return (
     <StyledNav variants={navVariant} initial="start" animate="end">
       <Button
-        type={navButton.homeType}
+        type={navButton.homeType as ButtonType}
         onClick={() => clickRouter('/home')}
         variants={buttonVariant}
         initial="start"
@@ -79,7 +88,7 @@ export function Navigation() {
         HOME
       </Button>
       <Button
-        type={navButton.rankType}
+        type={navButton.rankType as ButtonType}
         onClick={() => clickRouter('/rank')}
         variants={buttonVariant}
         initial="start"
