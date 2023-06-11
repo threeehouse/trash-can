@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
 import { ItemList, PageTransition } from '../../components';
 import { Item as ItemType } from '../../type';
 import { http } from '../../utils';
 
-function Rank({ items }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Rank({ items }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <PageTransition>
       <StyledLayout>
@@ -15,13 +15,13 @@ function Rank({ items }: InferGetStaticPropsType<typeof getStaticProps>) {
   );
 }
 
-export const getStaticProps: GetStaticProps<{
+export const getServerSideProps: GetServerSideProps<{
   items: ItemType[];
 }> = async () => {
   const res = await http.get('/rank');
   const items = res.data.result;
 
-  return { props: { items }, revalidate: 120 };
+  return { props: { items } };
 };
 
 const StyledLayout = styled('main')`
