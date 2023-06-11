@@ -16,8 +16,7 @@
 Next.js, TypeScript, Emotion, Framer-Motion, Three.js
 
 # Challenge List
-- [X] getServerSideProps (Home)
-- [ ] getStaticProps (Rank)
+- [X] getServerSideProps
 - [X] Framer로 Interactive Motion 구현하기
 - [X] Three.js로 3D 배경화면 제작
 - [X] 이미지 지연 로딩
